@@ -15,17 +15,25 @@ const CARD_VALUES = {
 }
 
 function winningPair(cardPair1, cardPair2) {
-  const pairValues1 = addPairValues(cardPair1)
-  const pairValues2 = addPairValues(cardPair2)
+  const pairValue1 = addPairValues(cardPair1)
+  const pairValue2 = addPairValues(cardPair2)
+  let winningPair = []
 
-  return pairValues1 > pairValues2 ? cardPair1 : cardPair2
+  if (pairValue1 > pairValue2) {
+    winningPair = cardPair1
+  }
+  if (pairValue2 > pairValue1) {
+    winningPair = cardPair2
+  }
+  
+  return winningPair
 }
 
 function addPairValues(cardPair) {
   let totalValueOfPair = 0
 
-  for (let card of cardPair) {
-    totalValueOfPair += CARD_VALUES[card]
+  if (cardPair[0] === cardPair[1]) {
+    totalValueOfPair = CARD_VALUES[cardPair[0]] + CARD_VALUES[cardPair[0]]
   }
 
   return totalValueOfPair
@@ -33,9 +41,10 @@ function addPairValues(cardPair) {
 
 // Extension criteria
 
-function winningPairFromArray() {}
+function winningPairFromArray(allCards) {
+}
 
-function winning3CardHand() {}
+function winning3CardHand() { }
 
 module.exports = {
   winningPair,
