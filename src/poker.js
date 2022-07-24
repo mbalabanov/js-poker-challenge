@@ -42,6 +42,34 @@ function addPairValues(cardPair) {
 // Extension criteria
 
 function winningPairFromArray(allCards) {
+  let allCardValues = []
+
+  for (let pair of allCards) {
+    const totalValueOfPair = addPairValues(pair)
+    allCardValues.push({
+      value: totalValueOfPair,
+      pairData: pair
+    })
+  }
+
+  return findHighestValueInArray(allCardValues)
+}
+
+function findHighestValueInArray(allCardValues) {
+  let winningPair = {
+    value: 0,
+    pairData: []
+  }
+
+  allCardValues.forEach(
+    function (card) {
+      if (card.value > winningPair.value) {
+        winningPair = card
+      }
+    }
+  )
+  
+  return winningPair.pairData
 }
 
 function winning3CardHand() { }
